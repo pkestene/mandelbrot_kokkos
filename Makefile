@@ -34,7 +34,7 @@ $(EXE) : $(OBJ)
 	$(CXX) $(KOKKOS_LDFLAGS) $(LDFLAGS) $(EXTRA_PATH) $(OBJ) $(KOKKOS_LIBS) $(LIB) -o $@
 
 clean:
-	rm -f $(OBJ) $(EXE_PREFIX).*
+	rm -f $(OBJ) $(EXE)
 
 cleandata:
 	rm -f *.ppm
