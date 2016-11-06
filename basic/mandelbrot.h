@@ -26,17 +26,17 @@ public:
   unsigned char mandelbrot(int Px, int Py) const
   {
 
-    double x0=xmin+Px*dx;
-    double y0=ymin+Py*dy;
-    double x=0.0;
-    double y=0.0;
+    float x0=xmin+Px*dx;
+    float y0=ymin+Py*dy;
+    float x=0.0;
+    float y=0.0;
     int i;
     for(i=0;x*x+y*y<4.0 && i<MAX_ITERS;i++) {
-      double xtemp=x*x-y*y+x0;
+      float xtemp=x*x-y*y+x0;
       y=2*x*y+y0;
       x=xtemp;
     }
-    return (double) MAX_COLOR*i/MAX_ITERS;
+    return (float) MAX_COLOR*i/MAX_ITERS;
   }
 
   KOKKOS_INLINE_FUNCTION
@@ -50,7 +50,7 @@ public:
   }
 
   DataArray image;
-  double xmin, ymin, dx, dy, WIDTH, HEIGHT, MAX_COLOR, MAX_ITERS;
+  float xmin, ymin, dx, dy, WIDTH, HEIGHT, MAX_COLOR, MAX_ITERS;
 
 }; // end class MandelBrotFunctor
 
