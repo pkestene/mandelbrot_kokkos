@@ -5,6 +5,8 @@ Three versions provided:
 * basic : Mandelbrot set is computed in a single Kokkos functor. Can be used
   with either OpenMP or Cuda backend.
 
+* basic_mdrange : same version a basic, just for illustrating the use of Kokkos::Experimental::MDRange
+
 * pipeline0 performs computations piece by piece
 
 * pipeline1 (only meaningfull when used with CUDA+OpenMP) performs computations piece by piece, but the loop over the pieces
