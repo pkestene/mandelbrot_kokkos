@@ -1,16 +1,4 @@
-[submodule "basic/kokkos"]
-	path = basic/kokkos
-	url = https://github.com/kokkos/kokkos
-	branch = develop
-[submodule "basic_mdrange/kokkos"]
-	path = basic_mdrange/kokkos
-	url = https://github.com/kokkos/kokkos
-	branch = develop
-[submodule "pipelined0/kokkos"]
-	path = pipelined0/kokkos
-	url = https://github.com/kokkos/kokkos
-	branch = develop
-[submodule "pipelined1/kokkos"]
-	path = pipelined1/kokkos
+[submodule "kokkos"]
+	path = kokkos
 	url = https://github.com/kokkos/kokkos
 	branch = develop
