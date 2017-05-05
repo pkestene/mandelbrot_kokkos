@@ -2,3 +2,7 @@
 	path = basic/kokkos
 	url = https://github.com/kokkos/kokkos
 	branch = develop
+[submodule "basic_mdrange/kokkos"]
+	path = basic_mdrange/kokkos
+	url = https://github.com/kokkos/kokkos
+	branch = develop
