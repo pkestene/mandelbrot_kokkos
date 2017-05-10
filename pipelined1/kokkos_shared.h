@@ -5,14 +5,15 @@
 #include <Kokkos_Parallel.hpp>
 #include <Kokkos_View.hpp>
 
+#if defined( KOKKOS_ENABLE_CUDA )
 
-#ifdef CUDA
 # define DEVICE Kokkos::Cuda
 #include <cuda.h>
-#endif
 
-#ifdef OPENMP
+#else
+
 # define DEVICE Kokkos::OpenMP
+
 #endif
 
 #ifndef DEVICE
@@ -21,13 +22,12 @@
 
 // Data array for image
 typedef Kokkos::View<unsigned char*, DEVICE> DataArray;
-// #ifdef CUDA
+// #ifdef KOKKOS_ENABLE_CUDA
 // typedef Kokkos::View<unsigned char*, Kokkos::CudaHostPinnedSpace> DataArrayPinned;
 // #endif
 
 // host mirror
 typedef DataArray::HostMirror                DataArrayHost;
-
 
 /**
  * Retrieve cartesian coordinate from index, using memory layout information.
@@ -38,7 +38,7 @@ typedef DataArray::HostMirror                DataArrayHost;
  */
 KOKKOS_INLINE_FUNCTION
 void index2coord(int index, int &i, int &j, int Nx, int Ny) {
-#ifdef CUDA
+#ifdef KOKKOS_ENABLE_CUDA
   j = index / Nx;
   i = index - j*Nx;
 #else
@@ -49,7 +49,7 @@ void index2coord(int index, int &i, int &j, int Nx, int Ny) {
 
 KOKKOS_INLINE_FUNCTION
 int coord2index(int i, int j, int Nx, int Ny) {
-#ifdef CUDA
+#ifdef KOKKOS_ENABLE_CUDA
   return i + Nx*j; // left layout
 #else
   return j + Ny*i; // right layout

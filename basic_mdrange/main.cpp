@@ -8,7 +8,7 @@
 #include "kokkos_shared.h"
 #include "mandelbrot.h"
 
-#ifdef CUDA
+#ifdef KOKKOS_ENABLE_CUDA
 #include "CudaTimer.h"
 #else // OpenMP
 #include "OpenMPTimer.h"
@@ -23,7 +23,7 @@ int main(int argc, char* argv[]) {
   /*
    * Initialize kokkos (host + device)
    */
-#ifdef CUDA
+#ifdef KOKKOS_ENABLE_CUDA
   // Initialize Host mirror device
   Kokkos::HostSpace::execution_space::initialize(1);
   //const unsigned device_count = Kokkos::Cuda::detect_device_count();
@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
           << "] )"
           << std::endl ;
     }
-#if defined( CUDA )
+#if defined( KOKKOS_ENABLE_CUDA )
     Kokkos::Cuda::print_configuration( msg );
 #else
     Kokkos::OpenMP::print_configuration( msg );
@@ -57,7 +57,7 @@ int main(int argc, char* argv[]) {
     std::cout << "##########################\n";
   }
 
-#ifdef CUDA
+#ifdef KOKKOS_ENABLE_CUDA
   CudaTimer timer;
 #else
   OpenMPTimer timer;
@@ -135,7 +135,7 @@ int main(int argc, char* argv[]) {
   }
   
    
-#ifdef CUDA
+#ifdef KOKKOS_ENABLE_CUDA
   Kokkos::Cuda::finalize();
   Kokkos::HostSpace::execution_space::finalize();
 #else
